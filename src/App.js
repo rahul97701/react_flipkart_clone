@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import HomePage from './components/HomePage';
+import ProductSearch from './components/ProductSearch';
+import ProductDetails from './components/ProductDetails';
+import { Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import { Navigate } from 'react-router-dom';
+import PageNotFound from './components/404';
+import Error from './components/Errors';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  <> 
+  <Error />
+  <Header />
+  
+  <Routes>
+    <Route path="/" element={<HomePage />}/>
+    <Route path="/product-search/:c_id" element={<ProductSearch />}/>
+    <Route path="/product-details" element={<ProductDetails />}/>
+    <Route path="/page-not-found" element={<PageNotFound />} />
+    <Route path="*" element={<Navigate to="/page-not-found" />} />
+
+  </Routes>
+ 
+  <Footer />
+  </>
+  )
+
 }
 
 export default App;
